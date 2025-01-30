@@ -57,7 +57,7 @@ const Payment = () => {
           </div>
         </nav>
       </div>
-      <div className="mt-4 flex space-x-4">Header</div>
+      <div className="mt-4 flex space-x-4">Header hi</div>
     </section>
   );
 };
