@@ -1,6 +1,5 @@
 'use client';
 
-import Navbar from '../component/Navbar';
 import { FaDollarSign, FaChartBar, FaShoppingCart, FaDatabase } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import { Line, Bar, Pie } from "react-chartjs-2";
@@ -111,8 +110,7 @@ const Overview: React.FC = () => {
     };
 
   return (
-    <div>
-      <Navbar />
+    <div>      
       <main>
         <div className={styles.dashboard}>
             <h2>Dashboard</h2>

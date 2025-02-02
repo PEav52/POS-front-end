@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { IoIosMore, IoIosSearch } from "react-icons/io";
+import { FaHome, FaChartBar, FaBox, FaTags, FaShoppingCart, FaCreditCard, FaUndo, FaFileInvoice, FaBell, FaComments, FaCog } from "react-icons/fa"; // Import icons from react-icons
 import { IoFilterSharp } from "react-icons/io5";
 import { LuArrowDownUp } from "react-icons/lu";
 import { BiPaperclip } from "react-icons/bi";
@@ -14,7 +15,7 @@ const Return = () => {
       <div className="font-inter flex flex-col">
         {/* Header */}
         <div className="flex items-center my-7 pl-2 text-xl md:text-2xl">
-          <BiPaperclip className="text-3xl" />
+          <FaUndo className="text-3xl" />
           <h4 className="font-bold ms-3">Return</h4>
         </div>
         {/* Navigation Menu & Icons */}

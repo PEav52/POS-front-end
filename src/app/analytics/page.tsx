@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from '../component/Navbar';
 import styles from "./Analytics.module.css";
 import { useState } from "react";
 import { Line, Pie } from "react-chartjs-2";
@@ -100,7 +99,6 @@ const Analytics = () => {
 
   return (
     <div>
-      <Navbar />
       <main>
         <div className={styles.dashboard}>
           <h2>Analytics</h2>
