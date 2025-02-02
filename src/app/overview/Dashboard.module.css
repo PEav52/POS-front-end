@@ -1,6 +1,12 @@
 .dashboard {
     padding: 20px;
   }
+
+  .dashboard .title{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+  }
   
   .cards {
     display: flex;

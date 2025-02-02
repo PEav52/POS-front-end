@@ -101,7 +101,9 @@ const Analytics = () => {
     <div>
       <main>
         <div className={styles.dashboard}>
-          <h2>Analytics</h2>
+          <div className={styles.title}>
+            <h2>Analytics</h2>
+          </div>
           <div className={styles.cards}>
             {cards.map((card, index) => (
               <div key={index} className={styles.card}>

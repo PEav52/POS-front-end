@@ -1,10 +1,11 @@
 'use client';
 
-import { FaDollarSign, FaChartBar, FaShoppingCart, FaDatabase } from "react-icons/fa";
+import { FaDollarSign, FaChartBar, FaShoppingCart, FaDatabase, FaHome } from "react-icons/fa";
 import styles from "./Dashboard.module.css";
 import { Line, Bar, Pie } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 import { useState } from "react";
+import { FaBell, FaEnvelope, FaUserCircle } from 'react-icons/fa'; // For icons
 
 Chart.register(...registerables);
 
@@ -113,7 +114,9 @@ const Overview: React.FC = () => {
     <div>      
       <main>
         <div className={styles.dashboard}>
-            <h2>Dashboard</h2>
+            <div className={styles.title}>                
+                <h2>Dashboard</h2>
+            </div>
             <div className={styles.cards}>
                 {cards.map((card, index) => (
                 <div key={index} className={styles.card}>
