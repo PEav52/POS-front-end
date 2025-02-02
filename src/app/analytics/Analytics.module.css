@@ -76,6 +76,10 @@
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.chart_table_container .chart_card .timeframeButtons button{
+  margin-right: 15px;
+} 
+
 .chart_card {
   width: 66%; /* Line Chart (2/3 of the space) */
 }
