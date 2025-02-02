@@ -29,31 +29,86 @@ const Payment = () => {
     "Date & Time",
     "Staff Name",
   ];
-
   const EntityValue = [
-    { TransactionID: "TXN 1", CustomerName: "Vanna Soeun", Type: "Sale", Items: "Evening Gown", PaymentMethod: "Credit Card", TotalPaid: "$200.00", Status: "Paid", Date_Time: "2025-01-01 10:00:00", StaffName: "Linda Heng" },
-    { TransactionID: "TXN 2", CustomerName: "Sokha Kim", Type: "Sale", Items: "Cocktail Dress", PaymentMethod: "Cash", TotalPaid: "$100.00", Status: "Paid", Date_Time: "2025-01-02 11:15:00", StaffName: "Nita Heng" },
-    { TransactionID: "TXN 3", CustomerName: "John Doe", Type: "Sale", Items: "Product 1", PaymentMethod: "Credit Card", TotalPaid: "$150.00", Status: "Paid", Date_Time: "2025-01-03 12:30:00", StaffName: "Jane Doe" },
-    { TransactionID: "TXN 4", CustomerName: "Sophea Chheng", Type: "Sale", Items: "Tuxedo", PaymentMethod: "Debit Card", TotalPaid: "$250.00", Status: "Paid", Date_Time: "2025-01-04 14:00:00", StaffName: "Pov Ly" },
-    { TransactionID: "TXN 5", CustomerName: "Rithy Chao", Type: "Sale", Items: "Bridal Veil", PaymentMethod: "Cash", TotalPaid: "$50.00", Status: "Paid", Date_Time: "2025-01-05 15:45:00", StaffName: "Sopheap Kim" },
-    { TransactionID: "TXN 6", CustomerName: "Mony Dara", Type: "Sale", Items: "Prom Dress", PaymentMethod: "Credit Card", TotalPaid: "$120.00", Status: "Paid", Date_Time: "2025-01-06 16:10:00", StaffName: "Sothy Ny" },
-    { TransactionID: "TXN 7", CustomerName: "Chan Rith", Type: "Sale", Items: "Formal Suit", PaymentMethod: "Credit Card", TotalPaid: "$200.00", Status: "Paid", Date_Time: "2025-01-07 17:25:00", StaffName: "Kanika Sar" },
-    { TransactionID: "TXN 8", CustomerName: "Pov Lek", Type: "Sale", Items: "Jumpsuit", PaymentMethod: "Cash", TotalPaid: "$110.00", Status: "Paid", Date_Time: "2025-01-08 18:00:00", StaffName: "Veasna Vong" },
-    { TransactionID: "TXN 9", CustomerName: "Vireak Prak", Type: "Sale", Items: "Casual Dress", PaymentMethod: "Debit Card", TotalPaid: "$80.00", Status: "Paid", Date_Time: "2025-01-09 19:20:00", StaffName: "Rin Mo" },
-    { TransactionID: "TXN 10", CustomerName: "Narin Keo", Type: "Sale", Items: "Ball Gown", PaymentMethod: "Credit Card", TotalPaid: "$300.00", Status: "Paid", Date_Time: "2025-01-10 20:30:00", StaffName: "Sophal Ying" },
-    { TransactionID: "TXN 11", CustomerName: "Phearom Sok", Type: "Sale", Items: "Shirt and Tie Set", PaymentMethod: "Cash", TotalPaid: "$70.00", Status: "Paid", Date_Time: "2025-01-11 21:15:00", StaffName: "Vannak Ny" },
-    { TransactionID: "TXN 12", CustomerName: "Ratanak Im", Type: "Sale", Items: "Suit Jacket", PaymentMethod: "Debit Card", TotalPaid: "$180.00", Status: "Paid", Date_Time: "2025-01-12 22:00:00", StaffName: "Sovath Kim" },
-    { TransactionID: "TXN 13", CustomerName: "Leakhena Chhouk", Type: "Sale", Items: "Skirt Set", PaymentMethod: "Credit Card", TotalPaid: "$90.00", Status: "Paid", Date_Time: "2025-01-13 10:45:00", StaffName: "Mony Nha" },
-    { TransactionID: "TXN 14", CustomerName: "Borey Thun", Type: "Sale", Items: "Blazer", PaymentMethod: "Cash", TotalPaid: "$150.00", Status: "Paid", Date_Time: "2025-01-14 11:30:00", StaffName: "Thida Keo" },
-    { TransactionID: "TXN 15", CustomerName: "Sreypov Sovann", Type: "Sale", Items: "Wedding Veil", PaymentMethod: "Credit Card", TotalPaid: "$50.00", Status: "Paid", Date_Time: "2025-01-15 12:00:00", StaffName: "Kosal Yi" },
-    { TransactionID: "TXN 16", CustomerName: "Malis Sem", Type: "Sale", Items: "Evening Dress", PaymentMethod: "Debit Card", TotalPaid: "$180.00", Status: "Paid", Date_Time: "2025-01-16 13:00:00", StaffName: "Kiry Vong" },
-    { TransactionID: "TXN 17", CustomerName: "Vandy Sour", Type: "Sale", Items: "Summer Dress", PaymentMethod: "Credit Card", TotalPaid: "$120.00", Status: "Paid", Date_Time: "2025-01-17 14:25:00", StaffName: "Sok Heng" },
-    { TransactionID: "TXN 18", CustomerName: "Chheang Vong", Type: "Sale", Items: "Casual Shirt", PaymentMethod: "Cash", TotalPaid: "$60.00", Status: "Paid", Date_Time: "2025-01-18 15:00:00", StaffName: "Sopheak Lim" },
-    { TransactionID: "TXN 19", CustomerName: "Sothea Kim", Type: "Sale", Items: "Blouse", PaymentMethod: "Credit Card", TotalPaid: "$70.00", Status: "Paid", Date_Time: "2025-01-19 16:10:00", StaffName: "Vanna Kim" },
-    { TransactionID: "TXN 20", CustomerName: "Dara Tith", Type: "Sale", Items: "Suit", PaymentMethod: "Debit Card", TotalPaid: "$200.00", Status: "Paid", Date_Time: "2025-01-20 17:30:00", StaffName: "Vathana Keo" }
+    {
+      TransactionID: "TXN 1",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "Product 1",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
+    {
+      TransactionID: "TXN 2",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "Product 1",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
+    {
+      TransactionID: "TXN 2",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "ProducthhhManagement",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
+    {
+      TransactionID: "TXN 3",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "Product 1",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
+    {
+      TransactionID: "TXN 3",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "Product 1",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
+    {
+      TransactionID: "TXN 3",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "Product 1",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
+    {
+      TransactionID: "TXN 3",
+      CustomerName: "John Doe",
+      Type: "Sale",
+      Items: "Product 1",
+      PaymentMethod: "Credit Card",
+      TotalPaid: "$150.00",
+      Status: "Paid",
+      Date_Time: "2022-01-01 10:00:00",
+      StaffName: "John Doe",
+    },
   ];
-  
-  
+
   const menuIcon = [IoIosSearch, IoFilterSharp, LuArrowDownUp, TfiMoreAlt];
   return (
     <section className="mx-5">
@@ -115,6 +170,7 @@ const Payment = () => {
           </div>
         </div>
       </div>
+      
       {/* =================Table=========================== */}
       <div className="scrollbar h-[550px] lg:h-[485px]  overflow-y-scroll">
         {EntityValue.map((item, index) => (
