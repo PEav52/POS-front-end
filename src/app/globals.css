@@ -2,20 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  /* =======sengvon=======> */
+  .listMenu {
+    @apply flex flex-col lg:flex-row lg:space-x-3 gap-y-2 lg:gap-y-0  px-[1px] py-[1.5px] lg:text-center text-black;
   }
-}
+  .iconMenu {
+    @apply px-3 py-1 bg-gray-100 rounded-lg hover:bg-gray-200 border-[2px] border-gray-400 border-opacity-40 cursor-pointer;
+  }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* ==============> */
+}
+.scrollbar::-webkit-scrollbar {
+  width: 0px;
 }

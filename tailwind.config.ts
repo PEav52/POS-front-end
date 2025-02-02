@@ -9,8 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        success: {
+          10: "#000000",
+        },
+      },
+      fontFamily: {
+        inter: "var(--font-inter)",
+        "ibm-plex-serif": "var(--font-ibm-plex-serif)",
       },
     },
   },
