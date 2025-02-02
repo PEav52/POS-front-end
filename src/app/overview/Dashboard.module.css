@@ -46,6 +46,13 @@
     margin-top: 40px; /* Adjust spacing from previous section */
     text-align: left;
   }
+
+  .chart_table_container .timeOptions{
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 2px;
+  }
   
   .chart_card {
     flex: 1;

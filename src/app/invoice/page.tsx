@@ -22,7 +22,6 @@ const invoice = () => {
     "PaidAmount",
     "DueAmount",
     "Status",
-    "Status",
     "Date_Time",
     "StaffName",
   ];

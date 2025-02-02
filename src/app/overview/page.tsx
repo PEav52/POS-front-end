@@ -11,15 +11,15 @@ Chart.register(...registerables);
 
 const Overview: React.FC = () => {
 
-    const [timeframe, setTimeframe] = useState("day");
+    const [timeframe, setTimeframe] = useState("week");
 
     // Sample data for Sales Chart
     const salesData = {
-        labels: timeframe === "day" ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: timeframe === "week" ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         datasets: [
         {
             label: "Total Sales ($)",
-            data: timeframe === "day" ? [500, 700, 800, 600, 900, 600, 900] : [5000, 7000, 8000, 6000, 9000, 5000, 7000, 8000, 6000, 9000, 1000, 10100],
+            data: timeframe === "week" ? [500, 700, 800, 600, 900, 600, 900] : [5000, 7000, 8000, 6000, 9000, 5000, 7000, 8000, 6000, 9000, 1000, 10100],
             backgroundColor: "rgba(54, 162, 235, 0.5)",
             borderColor: "blue",
             borderWidth: 2,
@@ -135,9 +135,9 @@ const Overview: React.FC = () => {
                 {/* Sales Chart */}
                 <div className={styles.chart_card}>
                 <h3>Sales Overview</h3>
-                <select onChange={(e) => setTimeframe(e.target.value)} value={timeframe}>
-                    <option value="day">Daily</option>
-                    <option value="month">Monthly</option>
+                <select className={styles.timeOptions} onChange={(e) => setTimeframe(e.target.value)} value={timeframe}>
+                    <option value="week">Week</option>
+                    <option value="month">Month</option>
                 </select>
                 <Line data={salesData} />
                 </div>
