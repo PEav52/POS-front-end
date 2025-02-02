@@ -22,7 +22,7 @@ export default function RootLayout({
       <body>
         <div style={{ display: "flex" }}>
           <Sidebar />
-          <div style={{ marginLeft: "12%", width: "88%"}}>
+          <div style={{ marginLeft: "14%", width: "86%"}}>
           {/* <div style={{ marginLeft: "12%", width: "100%" }}> */}
             <header>
               <div>

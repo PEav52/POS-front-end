@@ -21,7 +21,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside style={{ width: "12%", height: "100vh", backgroundColor: "#F3F3F3", padding: "20px", paddingTop: "50px", color: "black", position: "fixed", top: 0, left: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+    <aside style={{ width: "14%", height: "100vh", backgroundColor: "#F3F3F3", padding: "20px", paddingTop: "50px", color: "black", position: "fixed", top: 0, left: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
       {menuItems.map((item) => (
         <Link 
           href={`/${item.name.toLowerCase()}`} 
