@@ -5,7 +5,7 @@ import Sidebar from "./_Sidebar";
 import { BiSearch, BiX, BiBell, BiCart } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import "./globals.css";
-import Navbar from './component/Navbar';
+import Navbar from './components/Navbar';
 
 export const metadata = {
   title: "nib-pos-project",
