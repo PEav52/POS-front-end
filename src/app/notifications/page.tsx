@@ -4,6 +4,7 @@ export default function Products(){
             <h1 style={{fontSize: 30, color: "blue", backgroundColor: "pink", fontWeight: "bold", fontFamily: "sans-serif"}}>
                 Notifications  Page
             </h1>
+            <h1>Header</h1>
         </div>
     );
 }
