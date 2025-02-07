@@ -85,7 +85,7 @@ const Analytics = () => {
 
     // Sample table data
     const NewArrival = [
-      { ProductID: "S002", Name: "Product 2", InDate: "2025-01-13" },
+      { ProductID: "S0023", Name: "Product 2", InDate: "2025-01-13" },
       { ProductID: "S001", Name: "Product 1", InDate: "2025-01-12" },
       { ProductID: "S003", Name: "Product 3", InDate: "2025-01-14" },
       { ProductID: "S004", Name: "Product 4", InDate: "2025-01-15" },
