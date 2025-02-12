@@ -1,7 +1,7 @@
 // RootLayout.tsx
 import React from "react";
 import Link from "next/link";
-import Sidebar from "./_Sidebar";
+import Sidebar from "../_Sidebar";
 import { BiSearch, BiX, BiBell, BiCart } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import "./globals.css";

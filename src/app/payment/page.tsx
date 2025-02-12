@@ -5,29 +5,33 @@ import { TfiMoreAlt } from "react-icons/tfi";
 import { MdDelete, MdReviews } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
 import { EntityValue, NavMenubar, atrituteTitle, menuIcon } from "../Data/data";
+
 const Payment = () => {
   const [activeNav, setActiveMenu] = useState<string>("All");
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
-  // Initialize checkedItems based on EntityValue length
+  const [toggle, setToggle] = useState<number | null>(null);
   const [checkedItems, setCheckedItems] = useState<boolean[]>(
     new Array(EntityValue.length).fill(false)
   );
 
-  //=========Filter=======>
+  // ========= Pagination and Toggle Logic =========>
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
+    event.stopPropagation();
+    setToggle((prev) => (prev === id ? null : id));
+  };
+
+  // ========= Filter Logic =========>
   const filteredData =
     activeNav === "All"
       ? EntityValue
       : EntityValue.filter((item) => item.Status === activeNav);
-
   const handleFillter = (item: string) => {
     setActiveMenu(item);
     setIsAllChecked(false);
     setCheckedItems(new Array(filteredData.length).fill(false)); // Reset checked state
   };
-
   // Handle "Select All" checkbox change
   const handleSelectAllChange = () => {
     if (filteredData.length) {
@@ -38,15 +42,25 @@ const Payment = () => {
       setIsAllChecked(!isAllChecked);
     }
   };
+
   const handleCheckboxChange = (index: number) => {
     setCheckedItems((prev) => {
       const updatedCheckedItems = [...prev];
-      updatedCheckedItems[index] = !updatedCheckedItems[index]; // Remove `?? false`
+      updatedCheckedItems[index] = !updatedCheckedItems[index];
       return updatedCheckedItems;
     });
   };
 
-  // ================Dropdown Handling================>
+  // ========= Search Logic =========
+  const fillteredData = filteredData.filter((item) =>
+    Object.values(item).some(
+      (value) =>
+        typeof value === "string" &&
+        value.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
+  // ================ Dropdown Handling =================
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (!(event.target as Element).closest(".dropdown-menu")) {
@@ -59,7 +73,7 @@ const Payment = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
-
+  // =====================================================>
   return (
     <section className="mx-5">
       <div className="font-inter flex flex-col">
@@ -90,23 +104,52 @@ const Payment = () => {
               ))}
             </ul>
           </div>
-          <div className="flex items-center space-x-2 mt-3 lg:mt-0">
-            {/* Search Input (Controlled Component) */}
-            <input
-              type="text"
-              placeholder="Search item"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-2 py-[5px] text-sm border border-gray-400 rounded w-52"
-            />
+
+          <div className="flex items-center relative space-x-2 mt-3 lg:mt-0">
+            {/* Search Input */}
+            <div className={`${toggle === 0 ? "block" : "hidden"}`}>
+              <input
+                type="text"
+                placeholder="Search item"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-2 py-[5px] text-sm border border-gray-400 rounded w-52"
+              />
+            </div>
+
             {menuIcon.map((Icon, id) => (
-              <div key={id} className="iconMenu">
+              <div
+                key={id}
+                className="iconMenu"
+                onClick={(e) => handleClick(e, id)}
+              >
                 <Icon className="text-lg cursor-pointer" />
               </div>
             ))}
+            <div
+              className={`${
+                toggle === 3 ? "flex absolute right-0 -bottom-8" : "hidden"
+              }`}
+            >
+              <ul className="absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32 ">
+                <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                  View <MdReviews className="text-sm" />
+                </li>
+                <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                  Edit
+                  <LuPencil className="text-sm" />
+                </li>
+                <li
+                  onClick={() => {}}
+                  className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                >
+                  Delete
+                  <MdDelete className="text-sm" />
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
-
         {/* Attribute Section */}
         <div className="mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md">
           <div className="grid grid-cols-[auto_1fr_30px] items-center">
@@ -131,7 +174,7 @@ const Payment = () => {
 
       {/* Table Section */}
       <div className="scrollbar h-[550px] lg:h-[485px] overflow-y-scroll">
-        {filteredData.map((item, index) => (
+        {fillteredData.map((item, index) => (
           <div
             key={index}
             className="flex p-4 lg:h-[4.5rem] lg:px-5 mb-2 items-center border border-gray-400 shadow-md shadow-gray-300"
@@ -199,5 +242,4 @@ const Payment = () => {
     </section>
   );
 };
-
 export default Payment;
