@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
-
+import { motion, AnimatePresence } from "framer-motion";
+import { MdReviews, MdDelete } from "react-icons/md";
+import { LuPencil } from "react-icons/lu";
 interface Product {
   id: string;
   name: string;
@@ -28,6 +30,7 @@ const sampleProducts: Product[] = [
 export default function OutOfStockList() {
   const [selectedProduct, setSelectedProduct] = useState("All Products");
   const [selectedType, setSelectedType] = useState("All Types");
+  const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
 
   return (
     <div className="p-4 bg-gray-100 rounded-lg me-4">
@@ -85,15 +88,46 @@ export default function OutOfStockList() {
       </div>
 
       <div className="w-1/6">
-        <img src={product.image} alt={product.name} className="w-12 h-12 rounded-lg" />
+        <img src="/assets/Radaa.png" alt={product.name} className="w-12 h-12 rounded-lg" />
       </div>
 
       <div className="w-1/3 font-medium">{product.name}</div>
       <div className="w-1/6">${product.price.toFixed(2)}</div>
-      <div className="w-1/6">{product.stock}</div>
-      <div className="w-1/6 text-center">
-        <button className="text-gray-500 hover:text-gray-700 text-lg">•••</button>
-      </div>
+      <div className="w-1/6">{product.stock}</div>{/* Action Button with Dropdown */}
+            <div className="w-1/6 text-center relative">
+              <button
+                className="text-gray-500 hover:text-gray-700 text-lg"
+                onClick={() => setDropdownIndex(dropdownIndex === index ? null : index)} // Toggle dropdown
+              >
+                •••
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {dropdownIndex === index && (
+                  <motion.ul
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 top-6 bg-white font-medium text-sm text-gray-700 z-10 shadow-md rounded p-2 w-32 border"
+                  >
+                    <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                      View <MdReviews className="text-lg" />
+                    </li>
+                    <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                      Edit <LuPencil className="text-lg" />
+                    </li>
+                    <li
+                      onClick={() => alert(`Deleting ${product.name}`)}
+                      className="hover:bg-red-100 p-2 cursor-pointer flex justify-between text-red-600"
+                    >
+                      Delete <MdDelete className="text-lg" />
+                    </li>
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </div>
     </div>
   ))}
 </div>
