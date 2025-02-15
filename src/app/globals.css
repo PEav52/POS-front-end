@@ -10,9 +10,153 @@
   .iconMenu {
     @apply px-3 py-1 bg-gray-100 rounded-lg hover:bg-gray-200 border-[2px] border-gray-400 border-opacity-40 cursor-pointer;
   }
-
-  /* ==============> */
+  /* ======Invoice======================> */
+  /* ==> Navabar */
+  .In-navbar {
+    @apply flex gap-2 justify-between items-start lg:items-center;
+  }
+  .In-menubar {
+    @apply bg-gray-300 bg-opacity-70 w-[200px] lg:w-[555.5px] rounded;
+  }
+  .In-menuicon {
+    @apply flex items-center relative space-x-2 mt-3 lg:mt-0;
+  }
+  .In-searChmenu {
+    @apply px-2 py-[5px] text-sm border border-gray-400 rounded w-52;
+  }
+  .In-drop-sort {
+    @apply absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+  }
+  .In-drop-more {
+    @apply absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+  }
+  /* ===> Attribute */
+  .In-at-main {
+    @apply mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md;
+  }
+  .In-at-content {
+    @apply grid grid-cols-[auto_1fr_30px] items-center;
+  }
+  .In-at-label {
+    @apply flex items-center space-x-2;
+  }
+  .In-at-check {
+    @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+  }
+  .In-at-list {
+    @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between mr-14;
+  }
+  /* ===> Table Section */
+  .tab-sect-main {
+    @apply h-[550px] lg:h-[485px] overflow-y-scroll;
+  }
+  .tab-sect-content {
+    @apply flex p-4 lg:h-[4.5rem] lg:px-5 mb-2 items-center border border-gray-400 shadow-md shadow-gray-300;
+  }
+  .tab-sect-check {
+    @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+  }
+  .tab-sect-list {
+    @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between;
+  }
+  /* tab-section-drop */
+  .tab-drop-list {
+    @apply absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+  }
+  /* ======Payment===========================> */
+  .Pay-navbar {
+    @apply flex gap-2 justify-between items-start lg:items-center;
+  }
+  .Pay-menubar {
+    @apply bg-gray-300 bg-opacity-70 w-[200px] lg:w-[661px] rounded;
+  }
+  .Pay-menuicon {
+    @apply flex items-center relative space-x-2 mt-3 lg:mt-0;
+  }
+  .Pay-searChmenu {
+    @apply px-2 py-[5px] text-sm border border-gray-400 rounded w-52;
+  }
+  /* ===> Attribute */
+  .Pay-at-main {
+    @apply mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md;
+  }
+  .Pay-at-content {
+    @apply grid grid-cols-[auto_1fr_30px] items-center;
+  }
+  .Pay-at-label {
+    @apply flex items-center space-x-2;
+  }
+  .Pay-at-check {
+    @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+  }
+  .Pay-at-list {
+    @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between mr-14;
+  }
+  /* {table Section} */
+  .Pay-tab-main {
+    @apply scrollbar h-[550px] lg:h-[485px] overflow-y-scroll;
+  }
+  .Pay-tab-content {
+    @apply flex p-4 lg:h-[4.5rem] lg:px-5 mb-2 items-center border border-gray-400 shadow-md shadow-gray-300;
+  }
+  .Pay-tab-check {
+    @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+  }
+  .Pay-tab-list {
+    @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between;
+  }
+  /* tab-section-drop */
+  .Pay-drop-list {
+    @apply absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+  }
+  /* ======Retern===========================> */
+  .Retern-navbar {
+    @apply flex gap-2 justify-between items-start lg:items-center;
+  }
+  .Retern-menubar {
+    @apply bg-gray-300 bg-opacity-70 w-[200px] lg:w-[699px] rounded;
+  }
+  .Retern-menuicon {
+    @apply flex items-center relative space-x-2 mt-3 lg:mt-0;
+  }
+  .Retern-searChmenu {
+    @apply px-2 py-[5px] text-sm border border-gray-400 rounded w-52;
+  }
+  /* ===> Attribute */
+  .Retern-at-main {
+    @apply mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md;
+  }
+  .Retern-at-content {
+    @apply grid grid-cols-[auto_1fr_30px] items-center;
+  }
+  .Retern-at-label {
+    @apply flex items-center space-x-2;
+  }
+  .Retern-at-check {
+    @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+  }
+  .Retern-at-list {
+    @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between mr-14;
+  }
+  /* {table Section} */
+  .Retern-tab-main {
+    @apply h-[550px] lg:h-[485px] overflow-y-scroll;
+  }
+  .Retern-tab-content {
+    @apply flex p-4 lg:h-[4.5rem] lg:px-5 mb-2 items-center border border-gray-400 shadow-md shadow-gray-300;
+  }
+  .Retern-tab-check {
+    @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+  }
+  .Retern-tab-list {
+    @apply flex ms-3  w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between;
+  }
+  /* tab-section-drop */
+  .Retern-drop-list {
+    @apply absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+  }
 }
+
 .scrollbar::-webkit-scrollbar {
   width: 0px;
 }

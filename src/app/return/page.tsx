@@ -5,20 +5,25 @@ import { TfiMoreAlt } from "react-icons/tfi";
 import { MdDelete, MdReviews } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
 import { ReturnData } from "../Data/data";
+import { FaSort } from "react-icons/fa";
+import { HiRefresh } from "react-icons/hi";
+import { FaPercentage } from "react-icons/fa";
+import { MdMore } from "react-icons/md";
+import { menuIcon } from "../Data/data";
 const Return = () => {
   const [activeNav, setActiveMenu] = useState<string>("All");
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [toggle, setToggle] = useState<number | null>(null);
+  const [sort, setsort] = useState<string>("");
+
   const [checkedItems, setCheckedItems] = useState<boolean[]>(
     new Array(ReturnData.EntityValueReturn.length).fill(false)
   );
-
-  // ========= Pagination and Toggle Logic =========>
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
-    event.stopPropagation();
-    setToggle((prev) => (prev === id ? null : id));
+  //============Refresh page=========>
+  const handleRefresh = () => {
+    window.location.reload();
   };
 
   // ========= Filter Logic =========>
@@ -31,9 +36,9 @@ const Return = () => {
   const handleFillter = (item: string) => {
     setActiveMenu(item);
     setIsAllChecked(false);
-    setCheckedItems(new Array(filteredData.length).fill(false)); // Reset checked state
+    setCheckedItems(new Array(filteredData.length).fill(false));
   };
-  // Handle "Select All" checkbox change
+  // ==== Select checkbox All =======>
   const handleSelectAllChange = () => {
     if (filteredData.length) {
       const updatedCheckedItems = new Array(filteredData.length).fill(
@@ -51,15 +56,45 @@ const Return = () => {
       return updatedCheckedItems;
     });
   };
+  // =====Pagination and Toggle========>
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
+    event.stopPropagation();
+    setToggle((prev) => (prev === id ? null : id));
+  };
 
-  // ========= Search Logic =========
-  const fillteredData = filteredData.filter((item) =>
+  // ========= filter Search status and revers======>
+  let getData = filteredData.filter((item) =>
     Object.values(item).some(
       (value) =>
         typeof value === "string" &&
         value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
+  if (toggle === 3) {
+    let sortedData = [...filteredData];
+    sortedData.sort((a, b) =>
+      JSON.stringify(b).localeCompare(JSON.stringify(a))
+    );
+    getData = sortedData;
+  }
+  //== Sort Data ==>
+  const handleSort = () => {
+    if (sort === "asc") {
+      ReturnData.EntityValueReturn.sort((a, b) =>
+        (typeof b.status === "string" ? b.status : "").localeCompare(
+          typeof a.status === "string" ? a.status : ""
+        )
+      );
+      setsort("desc");
+    } else {
+      ReturnData.EntityValueReturn.sort((a, b) =>
+        (typeof a.status === "string" ? a.status : "").localeCompare(
+          typeof b.status === "string" ? b.status : ""
+        )
+      );
+      setsort("asc");
+    }
+  };
   // ================ Dropdown Handling =================
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -72,7 +107,6 @@ const Return = () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, []);
-  // =====================================================>
   return (
     <section className="mx-5">
       <div className="font-inter flex flex-col">
@@ -82,8 +116,8 @@ const Return = () => {
           <h4 className="font-bold ms-3">Return</h4>
         </div>
         {/* Navigation Menu & Icons */}
-        <nav className="flex gap-2 justify-between items-start lg:items-center">
-          <div className="bg-gray-300 bg-opacity-70 w-[200px] lg:w-[699px] rounded">
+        <nav className="Retern-navbar">
+          <div className="Retern-menubar ">
             <ul className="listMenu">
               {ReturnData.NavMenubarRetrun.map((item, index) => (
                 <li
@@ -103,62 +137,113 @@ const Return = () => {
             </ul>
           </div>
 
-          <div className="flex items-center relative space-x-2 mt-3 lg:mt-0">
+          <div className="Retern-menuicon">
             {/* Search Input */}
-            <div className={`${toggle === 0 ? "block" : "hidden"}`}>
+            <div className={`${toggle === 1 ? "block" : "hidden"}`}>
               <input
                 type="text"
                 placeholder="Search item"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-2 py-[5px] text-sm border border-gray-400 rounded w-52"
+                className="Retern-searChmenu"
               />
             </div>
-            {ReturnData.menuIconReturn.map((Icon, id) => (
+            <div className="iconMenu" onClick={(e) => handleClick(e, 1)}>
+              <menuIcon.IoIosSearch className="text-lg cursor-pointer" />
+            </div>
+            <div className="iconMenu" onClick={(e) => handleClick(e, 2)}>
+              <menuIcon.IoFilterSharp className="text-lg cursor-pointer" />
               <div
-                key={id}
-                className="iconMenu"
-                onClick={(e) => handleClick(e, id)}
+                className={`${
+                  toggle === 2
+                    ? "flex absolute  right-[105px] -bottom-8"
+                    : "hidden"
+                }`}
               >
-                <Icon className="text-lg cursor-pointer" />
+                <ul className="In-drop-sort">
+                  <li onClick={handleSort}>
+                    <a
+                      href="#"
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
+                      A-Z <FaSort className="text-sm" />
+                    </a>
+                  </li>
+                  <li onClick={handleRefresh}>
+                    <a
+                      href="#"
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
+                      Refresh
+                      <HiRefresh className="text-sm" />
+                    </a>
+                  </li>
+                  <li onClick={() => {}}>
+                    <a
+                      href="#"
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
+                      More
+                      <MdMore className="text-sm" />
+                    </a>
+                  </li>
+                </ul>
               </div>
-            ))}
-            <div
-              className={`${
-                toggle === 3 ? "flex absolute right-0 -bottom-8" : "hidden"
-              }`}
-            >
-              <ul className="absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32 ">
-                <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
-                  View <MdReviews className="text-sm" />
-                </li>
-                <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
-                  Edit
-                  <LuPencil className="text-sm" />
-                </li>
-                <li
-                  onClick={() => {}}
-                  className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                >
-                  Delete
-                  <MdDelete className="text-sm" />
-                </li>
-              </ul>
+            </div>
+            <div className="iconMenu" onClick={(e) => handleClick(e, 3)}>
+              <menuIcon.LuArrowDownUp className="text-lg cursor-pointer" />
+            </div>
+            <div className="iconMenu" onClick={(e) => handleClick(e, 4)}>
+              <menuIcon.TfiMoreAlt className="text-lg cursor-pointer" />
+              <div
+                className={`${
+                  toggle === 4 ? "flex absolute right-0 -bottom-8" : "hidden"
+                }`}
+              >
+                <ul className="In-drop-more">
+                  <li onClick={() => {}}>
+                    <a
+                      href="#"
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
+                      Estimation <FaPercentage className="text-sm" />
+                    </a>
+                  </li>
+                  <li onClick={() => {}}>
+                    <a
+                      href="#"
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
+                      Summary
+                      <LuPencil className="text-sm" />
+                    </a>
+                  </li>
+                  <li onClick={() => {}}>
+                    <a
+                      href="#"
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
+                      Delete All
+                      <MdDelete className="text-sm" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </nav>
         {/* Attribute Section */}
-        <div className="mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md">
-          <div className="grid grid-cols-[auto_1fr_30px] items-center">
-            <label className="flex items-center space-x-2">
+        <div className="Retern-at-main ">
+          <div className=" Retern-at-content">
+            <label className="Retern-at-label">
               <input
                 type="checkbox"
-                className="w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer"
+                className="Retern-at-check  "
                 checked={isAllChecked}
                 onChange={handleSelectAllChange}
               />
             </label>
-            <ul className="flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between mr-14">
+            <ul className="Retern-at-list">
               {ReturnData.atrituteTitleReturn.map((title, index) => (
                 <li key={index} className="w-auto lg:w-auto xl:w-28">
                   {title}
@@ -170,22 +255,19 @@ const Return = () => {
       </div>
 
       {/* Table Section */}
-      <div className="scrollbar h-[550px] lg:h-[485px] overflow-y-scroll">
-        {fillteredData.map((item, index) => (
-          <div
-            key={index}
-            className="flex p-4 lg:h-[4.5rem] lg:px-5 mb-2 items-center border border-gray-400 shadow-md shadow-gray-300"
-          >
+      <div className="Retern-tab-main scrollbar">
+        {getData.map((item, index) => (
+          <div key={index} className="Retern-tab-content ">
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 name="item"
-                className="w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer"
+                className="Retern-tab-check "
                 checked={checkedItems[index] || false}
                 onChange={() => handleCheckboxChange(index)}
               />
             </label>
-            <ul className="flex ms-3  w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between">
+            <ul className="Retern-tab-list ">
               <li className="w-16">{index + 1}</li>
               <li className="w-24 pl-6 break-words whitespace-normal">
                 {item.transaction}
@@ -224,7 +306,7 @@ const Return = () => {
               >
                 <TfiMoreAlt className="text-lg" />
                 {dropdownIndex === index && (
-                  <ul className="absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32 dropdown-menu">
+                  <ul className="Retern-drop-list  dropdown-menu">
                     <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
                       View <MdReviews className="text-sm" />
                     </li>
@@ -232,12 +314,14 @@ const Return = () => {
                       Edit
                       <LuPencil className="text-sm" />
                     </li>
-                    <li
-                      onClick={() => {}}
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Delete
-                      <MdDelete className="text-sm" />
+                    <li onClick={() => {}}>
+                      <a
+                        href={String(index)}
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Delete
+                        <MdDelete className="text-sm" />
+                      </a>
                     </li>
                   </ul>
                 )}

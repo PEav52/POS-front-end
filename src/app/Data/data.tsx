@@ -3,8 +3,13 @@ import { IoFilterSharp } from "react-icons/io5";
 import { LuArrowDownUp } from "react-icons/lu";
 import { TfiMoreAlt } from "react-icons/tfi";
 import { IoIosMore } from "react-icons/io";
-export const menuIcon = [IoIosSearch, IoFilterSharp, LuArrowDownUp, TfiMoreAlt];
-export const NavMenubar = [
+export const menuIcon = {
+  IoIosSearch,
+  IoFilterSharp,
+  LuArrowDownUp,
+  TfiMoreAlt,
+};
+const NavMenubarPayment = [
   "All",
   "Paid",
   "Pending",
@@ -12,7 +17,7 @@ export const NavMenubar = [
   "Refunded",
   "Canceled",
 ];
-export const atrituteTitle = [
+const atrituteTitlePayment = [
   "Transaction ID",
   "Customer Name",
   "Type (Sale/Rental)",
@@ -23,7 +28,7 @@ export const atrituteTitle = [
   "Date & Time",
   "Staff Name",
 ];
-export const EntityValue = [
+const EntityValuePayment = [
   {
     TransactionID: "TXN 1",
     CustomerName: "John Doe",
@@ -42,7 +47,7 @@ export const EntityValue = [
     Items: "Product 1",
     PaymentMethod: "Credit Card",
     TotalPaid: "$150.00",
-    Status: "Overdue",
+    Status: "Paid",
     Date_Time: "2022-01-01 10:00:00",
     StaffName: "John Doe",
   },
@@ -53,7 +58,7 @@ export const EntityValue = [
     Items: "Product 1",
     PaymentMethod: "Credit Card",
     TotalPaid: "$150.00",
-    Status: "Pending",
+    Status: "A",
     Date_Time: "2022-01-01 10:00:00",
     StaffName: "John Doe",
   },
@@ -64,7 +69,7 @@ export const EntityValue = [
     Items: "Product Management",
     PaymentMethod: "Credit Card",
     TotalPaid: "$150.00",
-    Status: "Paid",
+    Status: "Z",
     Date_Time: "2022-01-01 10:00:00",
     StaffName: "John Doe",
   },
@@ -75,7 +80,7 @@ export const EntityValue = [
     Items: "Product 1",
     PaymentMethod: "Credit Card",
     TotalPaid: "$150.00",
-    Status: "Refunded",
+    Status: "Paid",
     Date_Time: "2022-01-01 10:00:00",
     StaffName: "John Doe",
   },
@@ -113,6 +118,15 @@ export const EntityValue = [
     StaffName: "John Doe",
   },
 ];
+
+export const PaymentData = {
+  NavMenubarPayment,
+  atrituteTitlePayment,
+  EntityValuePayment,
+};
+
+//==================>
+
 const EntityValueReturn = [
   {
     id: "RET-001",
@@ -355,7 +369,6 @@ const EntityValueReturn = [
     staff: "Vathana Keo",
   },
 ];
-
 const NavMenubarRetrun = [
   "All",
   "Pending",
@@ -376,14 +389,14 @@ const atrituteTitleReturn = [
   "RefundAmount",
   "Staff Name",
 ];
-const menuIconReturn = [IoIosSearch, IoFilterSharp, LuArrowDownUp, IoIosMore];
-
 export const ReturnData = {
   EntityValueReturn,
   NavMenubarRetrun,
-  menuIconReturn,
   atrituteTitleReturn,
 };
+
+//========Invoice data================>
+
 const NavMenubarInvoice = [
   "All",
   "Paid",
@@ -436,7 +449,7 @@ const EntityValueReturnInvoice = [
     transactionType: "Rental Return",
     date: "2025-01-22",
     condition: "Good",
-    status: "Overdue",
+    status: "A",
     amount: "$30.00",
     staff: "Nita Heng",
   },
@@ -448,7 +461,7 @@ const EntityValueReturnInvoice = [
     transactionType: "Rental Return",
     date: "2025-01-23",
     condition: "Excellent",
-    status: "Pending",
+    status: "Z",
     amount: "$60.00",
     staff: "Pov Ly",
   },
@@ -645,10 +658,8 @@ const EntityValueReturnInvoice = [
     staff: "Vathana Keo",
   },
 ];
-const menuIconInvoice = [IoIosSearch, IoFilterSharp, LuArrowDownUp, IoIosMore];
 export const InvoiceData = {
   NavMenubarInvoice,
   atrituteTitleInvoice,
   EntityValueReturnInvoice,
-  menuIconInvoice,
 };
