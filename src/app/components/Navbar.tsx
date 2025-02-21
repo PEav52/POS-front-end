@@ -25,12 +25,14 @@ const Navbar: React.FC = () => {
         {/* Right-side icons and User Profile */}
         <div style={styles.rightSection}>
           {/* Message Icon */}
-          <a href="#" style={styles.iconLink}>
-            <FaEnvelope size={20} style={styles.icon} />
-          </a>
+            <a href="#" style={styles.iconLink} className='relative'>
+              <span className='absolute text-[10px] bg-orange-400 rounded-3xl h-4 w-4 text-center top-[-8px] right-[-5px] text-white'>3</span>
+              <FaEnvelope size={20} style={styles.icon} />
+            </a>
           
           {/* Bell Icon */}
-          <a href="#" style={styles.iconLink}>
+          <a href="#" style={styles.iconLink} className='relative'>
+            <span className='absolute text-[10px] bg-orange-400 rounded-3xl h-4 w-4 text-center top-[-8px] right-[-5px] text-white'>3</span>
             <FaBell size={20} style={styles.icon} />
           </a>
           
