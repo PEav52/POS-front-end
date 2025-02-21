@@ -18,16 +18,16 @@ export default function AddProductPage() {
           <span className="mr-2">📦</span> Add New Product
         </h1>
         <div className="flex space-x-3">
-          <button className="border px-4 py-2 rounded-3xl flex items-center bg-zinc-400 text-lime-50">
+          <button className="border px-4 py-2 rounded-3xl flex items-center bg-zinc-400 text-lime-50 border-2 border-black">
             <Save size={16} className="mr-2" /> Save Draft
           </button>
-          <button className="bg-green-500 text-white px-4 py-2 rounded-3xl flex items-center">
+          <button className="bg-green-400 text-white px-4 py-2 rounded-3xl flex items-center border-2 border-black">
             ✅ Add Product
           </button>
           {/* Back Button */}
           <button
             onClick={() => router.back()}
-            className="border px-3 flex items-center rounded-3xl bg-zinc-500 text-violet-50"
+            className="px-3 flex items-center rounded-3xl bg-zinc-500 text-violet-50"
           >
             <ArrowLeft size={18} className="" />
           </button>
@@ -35,34 +35,34 @@ export default function AddProductPage() {
       </div>
 
       {/* Responsive Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-5">
         {/* Left Column */}
         <div className="lg:col-span-4 space-y-6">
           {/* General Information */}
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h2 className="font-semibold mb-3">General Information</h2>
-            <h3 className="font-thin mb-2 text-[12px]">Name Product</h3>
+          <div className="bg-gray-200 p-4 rounded-lg shadow">
+            <h2 className="font-semibold mb-2">General Information</h2>
+            <h3 className="font-thin mb-1 text-[12px]">Name Product</h3>
             <input
               type="text"
               placeholder="Slim Fit Jeans"
-              className="w-full p-2 border rounded-md mb-3"
+              className="w-full p-2 border rounded-md mb-3 bg-gray-300"
             />
-            <h3 className="font-thin mb-2 text-[13px]">Description Product</h3>
+            <h3 className="font-thin mb-1 text-[13px]">Description Product</h3>
             <textarea
               placeholder="Enter product description..."
-              className="w-full p-2 border rounded-md h-36"
+              className="w-full p-2 border rounded-md h-32 bg-gray-300"
             />
 
                 {/* Size & Gender */}
-                <div className="bg-white p-4 rounded-lg flex flex-wrap justify-between">
+                <div className="rounded-lg flex flex-wrap justify-between">
                   <div className="w-full sm:w-1/2">
-                    <h2 className="font-semibold mb-2">Size</h2>
-                    <h3 className="font-thin mb-1 text-[12px]">Pick Available Size</h3>
+                    <h2 className="font-semibold mb-1 text-[14px]">Size</h2>
+                    <h3 className="font-thin mb-1 text-[10px]">Pick Available Size</h3>
                     <div className="flex space-x-2">
                       {["XS", "S", "M", "XL", "XXL"].map((size) => (
                         <button
                           key={size}
-                          className={`px-3 py-1 rounded-lg border ${selectedSize === size ? "bg-green-300" : ""}`}
+                          className={`px-3 py-1 rounded-lg border ${selectedSize === size ? "bg-green-100" : ""}`}
                           onClick={() => setSelectedSize(size)}
                         >
                           {size}
@@ -71,16 +71,16 @@ export default function AddProductPage() {
                     </div>
                   </div>
                   <div className="w-full sm:w-1/2 mt-3 sm:mt-0">
-                    <h2 className="font-semibold mb-2">Gender</h2>
-                    <h3 className="font-thin mb-1 text-[12px]">Pick Available Gender</h3>
-                    <div className="flex space-x-3">
-                      <label className="flex items-center space-x-1">
+                    <h2 className="font-semibold mb-1 text-[14px]">Gender</h2>
+                    <h3 className="font-thin mb-1 text-[10px]">Pick Available Gender</h3>
+                    <div className="flex space-x-8">
+                      <label className="flex items-center space-x-2">
                         <input type="radio" name="gender" value="man" /> <span>Man</span>
                       </label>
-                      <label className="flex items-center space-x-1">
+                      <label className="flex items-center space-x-2">
                         <input type="radio" name="gender" value="woman" /> <span>Woman</span>
                       </label>
-                      <label className="flex items-center space-x-1">
+                      <label className="flex items-center space-x-2">
                         <input type="radio" name="gender" value="unisex" /> <span>Unisex</span>
                       </label>
                     </div>
@@ -89,26 +89,26 @@ export default function AddProductPage() {
           </div>
 
           {/* Pricing and Stock */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-gray-200 p-4 rounded-lg shadow">
             <h2 className="font-semibold mb-2">Pricing And Stock</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="pricing-stock">
                 <h4 className="font-semibold text-[12px]">Base Pricing</h4>
-                <input type="text" placeholder="Enter your base pricing" className="p-2 border rounded-md w-full" />
+                <input type="text" placeholder="Enter your base pricing" className="p-2 border rounded-md w-full bg-gray-300" />
               </div>
               <div className="pricing-stock">
               <h4 className="font-semibold text-[12px]">Stock</h4>
-                <input type="text" placeholder="Enter your stock" className="p-2 border rounded-md w-full" />
+                <input type="text" placeholder="Enter your stock" className="p-2 border rounded-md w-full bg-gray-300" />
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
               <div className="pricing-discount">
               <h4 className="font-semibold text-[12px]">Discount</h4>
-                <input type="text" placeholder="Enter your discount" className="p-2 border rounded-md w-full" />
+                <input type="text" placeholder="Enter your discount" className="p-2 border rounded-md w-full bg-gray-300" />
               </div>
               <div className="pricing-discount">
               <h4 className="font-semibold text-[12px]">Discount Type</h4>
-                <select name="discount_type" id="discount_type" className="w-full p-2 border rounded-md">
+                <select name="discount_type" id="discount_type" className="w-full p-2 border rounded-md bg-gray-300">
                   <option value="" hidden>Select your type discount</option>
                   <option value="">Chinese New Year Discount</option>
                   <option value="">Khmer New Year Discount</option>
@@ -125,31 +125,31 @@ export default function AddProductPage() {
         {/* Right Column */}
         <div className="lg:col-span-1 space-y-6">
           {/* Image Upload */}
-          <div className="bg-white p-5 rounded-lg shadow text-center">
+          <div className="bg-gray-100 p-5 rounded-lg shadow text-center">
             <h2 className="font-semibold mb-3">Upload Img</h2>
             <div className="border rounded-lg p-3 flex justify-center">
               <img
                 src="/assets/Radaa.png"
                 alt="Product"
-                className="w-40 h-60 object-cover"
+                className="w-40 h-56 object-cover"
               />
             </div>
             <div className="flex justify-center mt-3 space-x-2">
-              <div className="w-10 h-1/2 border rounded">
+              <div className="w-10 h-1/2 border-2 rounded">
                 <img
                   src="/assets/Radaa.png"
                   className="img-fluid rounded-top"
                   alt=""
                 />
               </div>
-              <div className="w-10 h-1/2 border rounded">
+              <div className="w-10 h-1/2 border-2 rounded">
               <img
                   src="/assets/Radaa.png"
                   className="img-fluid rounded-top"
                   alt=""
                 />
               </div>
-              <div className="w-10 h-1/2 border rounded">
+              <div className="w-10 h-1/2 border-2 rounded">
               <img
                   src="/assets/Radaa.png"
                   className="img-fluid rounded-top"
@@ -157,7 +157,7 @@ export default function AddProductPage() {
                 />
               </div>
               <div className="rounded">
-                <button className="w-10 h-full border rounded flex justify-center items-center">
+                <button className="w-10 h-full border-2 rounded flex justify-center items-center">
                   <PlusCircle size={16} />
                 </button>
               </div>
@@ -165,11 +165,13 @@ export default function AddProductPage() {
           </div>
 
           {/* Category */}
-          <div className="bg-white p-4 rounded-lg shadow">
+          <div className="bg-gray-200 p-4 rounded-lg shadow">
             <h2 className="font-semibold mb-3">Category</h2>
             <h3 className="font-semibold mb-1 text-[12px]">Product Category</h3>
-            <select className="w-full p-2 border rounded-md">
-              <option>Casual Wear</option>
+            <select className="bg-gray-300 w-full p-2 border rounded-md">
+              <option value="">Casual Wear</option>
+              <option value="">Testing</option>
+              <option value="">White T-Shirt</option>
             </select>
             <button className="mt-3 bg-green-500 text-white px-4 py-2 rounded-3xl" onClick={() => setIsOpen(true)}>
               Add Category

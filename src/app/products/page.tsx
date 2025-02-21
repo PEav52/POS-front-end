@@ -67,7 +67,7 @@ export default function Products() {
             <div className="flex space-x-4">
 
               {/* Product Filter */}
-              <select className="border border-gray-300 p-2 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:outline-none"
+              <select className="border border-gray-300 p-2 px-2 rounded-lg bg-white shadow-sm focus:ring-blue-500 focus:outline-none"
                 value={selectedProduct}
                 onChange={(e) => setSelectedProduct(e.target.value)}
               >
@@ -123,7 +123,7 @@ export default function Products() {
                   <td className="p-3">{product.price}</td>
                   <td className="p-3">{product.stock}</td>
                   <td className="p-3">
-                    <button
+                  <button
                       className="flex items-center text-red-500 hover:text-red-700" // ✅ Red Button
                       onClick={() => handleEditProduct(product.id)}
                     >
