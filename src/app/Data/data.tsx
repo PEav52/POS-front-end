@@ -17,6 +17,7 @@ const NavMenubarPayment = [
   "Refunded",
   "Canceled",
 ];
+
 const atrituteTitlePayment = [
   "Transaction ID",
   "Customer Name",
@@ -662,4 +663,255 @@ export const InvoiceData = {
   NavMenubarInvoice,
   atrituteTitleInvoice,
   EntityValueReturnInvoice,
+};
+
+//========Sale data================>
+
+const NavMenubarSale = [
+  "All",
+  "Completed",
+  "Pending",
+  "Canceled",
+
+];
+const atrituteTitleSale = [
+  'Sale ID',
+  'Customer',
+  'Customer Name',
+  'Date & Time',
+  'Product Name',
+  'Category',
+  'Size',
+  'Color',
+  'Quantity',
+  'Unit Price',
+  'Total Price',
+  'Discount (%)',
+  'Amount',
+  'Payment Method',
+  'Cashier Name',
+  'Status',
+];
+
+const EntityValueReturnSale = [
+  {
+    "Sale ID": "SAL123",
+    "Customer ID": "CUS123",
+    "Customer Name": "PECH SEAVPEAV",
+    "Date & Time": "12/01/2025",
+    "Products": [
+      {
+        "Product Name": "Floral Summer Dress",
+        "Category": "Casual Wear",
+        "Size": "M",
+        "Color": "N/A",
+        "Quantity": 1,
+        "Unit Price": "$23",
+        "Total Price": "$23",
+        "Discount (%)": "10%",
+        "Amount": "$21.7"
+      },
+      {
+        "Product Name": "Another Product",
+        "Category": "Another Category",
+        "Size": "L",
+        "Color": "Blue",
+        "Quantity": 2,
+        "Unit Price": "$15",
+        "Total Price": "$30",
+        "Discount (%)": "5%",
+        "Amount": "$28.5"
+      }
+    ],
+    "Payment Method": "Cash",
+    "Cashier Name": "alexander",
+    "Status": "Completed"
+  },
+  {
+    "Sale ID": "SAL124",
+    "Customer ID": "CUS124",
+    "Customer Name": "TEST NAME",
+    "Date & Time": "12/02/2025",
+    "Products": [
+      {
+        "Product Name": "Product 3",
+        "Category": "Category 3",
+        "Size": "S",
+        "Color": "Red",
+        "Quantity": 1,
+        "Unit Price": "$10",
+        "Total Price": "$10",
+        "Discount (%)": "0%",
+        "Amount": "$10"
+      }
+    ],
+    "Payment Method": "Credit Card",
+    "Cashier Name": "jane",
+    "Status": "Pending"
+  }
+  
+];
+  
+ 
+export const SaleData = {
+  NavMenubarSale,
+  atrituteTitleSale,
+  EntityValueReturnSale,
+};
+
+
+//========Rent data================>
+
+const NavMenubarRent = [
+  "All",
+  "Reserved",
+  "Due for Return",
+  "Overdue",
+  "Returned",
+  "Damaged",
+  "Lost",
+  "Canceled",
+
+];
+const atrituteTitleRent = [
+  'Rent ID',
+  'Customer Name',
+  'Rental Date',
+  'Due Date',
+  'Return Date',
+  'Product Name',
+  'Category',
+  'Size',
+  'Color',
+  'Quantity',
+  'Rental Fee',
+  'Duration',
+  'Discount (%)',
+  'Amount',
+  'Deposit',
+  'Late Fee',
+  'Cashier Name',
+  'Status',
+];
+
+const EntityValueReturnRent = [
+  {
+    "Rent ID": "RENT123",
+    "Customer Name": "PECH DAVI",
+    "Rental Date": "12/01/2025",
+    "Due Date": "12/08/2025", 
+    "Return Date": "11/28/2025",
+    "Products": [
+      {
+        "Product Name": "Floral Summer Dress",
+        "Category": "Casual Wear",
+        "Size": "M",
+        "Color": "N/A",
+        "Quantity": 1,
+        "Rental Fee": "$23/day",
+        "Duration": "1Days", 
+        "Discount (%)": "10%",
+        "Amount": "$45",
+        "Deposit": "$10", 
+        "Late Fee": "$0", 
+      },
+      {
+        "Product Name": "Another Product",
+        "Category": "Another Category",
+        "Size": "L",
+        "Color": "Blue",
+        "Quantity": 2,
+        "Rental Fee": "$15/day",
+        "Duration": "7 Days", 
+        "Discount (%)": "10%",
+        "Amount": "$18",
+        "Deposit": "$10", 
+        "Late Fee": "$0", 
+      }
+    ],
+    "Cashier Name": "alexander",
+    "Status": "Reserved" 
+  },
+  {
+    "Rent ID": "RENT124", 
+    "Customer ID": "CUS124",
+    "Customer Name": "TEST NAME",
+    "Rental Date": "12/02/2025", 
+    "Due Date": "12/09/2025", 
+    "Return Date": "11/28/2025", 
+    "Products": [
+      {
+        "Product Name": "Product 3",
+        "Category": "Category 3",
+        "Size": "S",
+        "Color": "Red",
+        "Quantity": 1,
+        "Rental Fee": "$10",
+        "Duration": "7 Days", 
+        "Discount (%)": "0%",
+        "Amount": "$10",
+        "Deposit": "$5", 
+        "Late Fee": "$0", 
+      }
+    ],
+    "Cashier Name": "jane",
+    "Status": "Due for Return" 
+  },
+  {
+    "Rent ID": "RENT125",
+    "Customer ID": "CUS125",
+    "Customer Name": "JOHN DOE",
+    "Rental Date": "11/20/2025",
+    "Due Date": "11/27/2025",
+    "Return Date": "11/28/2025",
+    "Products": [
+      {
+        "Product Name": "Party Suit",
+        "Category": "Formal Wear",
+        "Size": "XL",
+        "Color": "Black",
+        "Quantity": 1,
+        "Rental Fee": "$50",
+        "Duration": "7 Days",
+        "Discount (%)": "20%",
+        "Amount": "$40",
+        "Deposit": "$25",
+        "Late Fee": "$5",
+      }
+    ],
+    "Cashier Name": "alexander",
+    "Status": "Returned",
+  },
+  {
+    "Rent ID": "RENT126",
+    "Customer ID": "CUS126",
+    "Customer Name": "JANE SMITH",
+    "Rental Date": "11/15/2025",
+    "Due Date": "11/22/2025",
+    "Return Date":"11/28/2025",
+    "Products": [
+      {
+        "Product Name": "Evening Gown",
+        "Category": "Formal Wear",
+        "Size": "M",
+        "Color": "Gold",
+        "Quantity": 1,
+        "Rental Fee": "$75",
+        "Duration": "7 Days",
+        "Discount (%)": "0%",
+        "Amount": "$75",
+        "Deposit": "$30",
+        "Late Fee": "$15",
+      }
+    ],
+    "Cashier Name": "jane",
+    "Status": "Overdue",
+  },
+];
+  
+ 
+export const RentData = {
+  NavMenubarRent,
+  atrituteTitleRent,
+  EntityValueReturnRent,
 };

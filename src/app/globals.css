@@ -155,8 +155,117 @@
   .Retern-drop-list {
     @apply absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
   }
+
+
+/* ======Sale===========================> */
+.Sale-navbar {
+  @apply flex gap-2 justify-between items-start lg:items-center;
+}
+.Sale-menubar {
+  @apply bg-gray-300 bg-opacity-70 w-[200px] lg:w-[455px] rounded;
+}
+.Sale-menuicon {
+  @apply flex items-center relative space-x-2 mt-3 lg:mt-0;
+}
+.Sale-searChmenu {
+  @apply px-2 py-[5px] text-sm border border-gray-400 rounded w-52;
+}
+.Sale-drop-sort {
+  @apply absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+}
+.Sale-drop-more {
+  @apply absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+}
+/* ===> Attribute */
+.Sale-at-main {
+  @apply mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md;
+}
+.Sale-at-content {
+  @apply grid grid-cols-[auto_1fr_30px] items-center;
+}
+.Sale-at-label {
+  @apply flex items-center space-x-2;
+}
+.Sale-at-check {
+  @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+}
+.Sale-at-list {
+  @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between mr-14;
+}
+/* {table Section} */
+.Sale-tab-main {
+  @apply scrollbar h-[550px] lg:h-[485px] overflow-y-scroll overflow-x-auto; /* បន្ថែម overflow-x-auto */
+}
+.Sale-tab-content {
+  @apply flex p-6 lg:min-h-[6rem] lg:px-6 mb-2 items-start border border-gray-400 shadow-md shadow-gray-300; /* កែសម្រួល padding និង lg:min-h */
+}
+.Sale-tab-check {
+  @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+}
+.Sale-tab-list {
+  @apply flex flex-wrap justify-start min-h-[5rem] ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-start; /* កែសម្រួល justify-start, flex-wrap, និង min-h */
+}
+/* tab-section-drop */
+.Sale-drop-list {
+  @apply absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+}
+
+/* ======Rent===========================> */
+.Rent-navbar {
+  @apply flex gap-2 justify-between items-start lg:items-center;
+}
+.Rent-menubar {
+  @apply bg-gray-300 bg-opacity-70 w-[200px] lg:w-[886px] rounded;
+}
+.Rent-menuicon {
+  @apply flex items-center relative space-x-2 mt-3 lg:mt-0;
+}
+.Rent-searChmenu {
+  @apply px-2 py-[5px] text-sm border border-gray-400 rounded w-52;
+}
+.Rent-drop-sort {
+  @apply absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+}
+.Rent-drop-more {
+  @apply absolute right-0 -top-6 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+}
+/* ===> Attribute */
+.Rent-at-main {
+  @apply mt-3 p-4 lg:p-5 bg-gray-300 bg-opacity-70 rounded-t-md;
+}
+.Rent-at-content {
+  @apply grid grid-cols-[auto_1fr_30px] items-center;
+}
+.Rent-at-label {
+  @apply flex items-center space-x-2;
+}
+.Rent-at-check {
+  @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+}
+.Rent-at-list {
+  @apply flex ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-center justify-between mr-14;
+}
+/* {table Section} */
+.Rent-tab-main {
+  @apply scrollbar h-[550px] lg:h-[485px] overflow-y-scroll overflow-x-auto; /* បន្ថែម overflow-x-auto */
+}
+.Rent-tab-content {
+  @apply flex p-6 lg:min-h-[6rem] lg:px-6 mb-2 items-start border border-gray-400 shadow-md shadow-gray-300; /* កែសម្រួល padding និង lg:min-h */
+}
+.Rent-tab-check {
+  @apply w-5 h-5 border-2 border-gray-500 rounded-md cursor-pointer;
+}
+.Rent-tab-list {
+  @apply flex flex-wrap justify-start min-h-[5rem] ms-3 w-full text-xs md:text-sm lg:text-[14px] font-sans items-start; /* កែសម្រួល justify-start, flex-wrap, និង min-h */
+}
+/* tab-section-drop */
+.Rent-drop-list {
+  @apply absolute right-0 top-5 bg-gray-200 font-bold text-xs text-gray-700 z-10 shadow-md rounded p-2 w-32;
+}
+
 }
 
 .scrollbar::-webkit-scrollbar {
   width: 0px;
 }
+
