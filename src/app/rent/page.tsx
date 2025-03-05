@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import { TfiMoreAlt } from "react-icons/tfi";
 import { MdDelete, MdReviews } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
-import { RentData } from "../Data/data";
+import { RentData } from "../constants/data";
 import { FaSort } from "react-icons/fa";
 import { HiRefresh } from "react-icons/hi";
 import { FaPercentage } from "react-icons/fa";
 import { MdMore } from "react-icons/md";
-import { menuIcon } from "../Data/data";
+import { menuIcon } from "../constants/data";
 
 //============icon=========>
 import { FaShoppingCart } from "react-icons/fa";
@@ -118,8 +118,6 @@ const Rent = () => {
         <div className="flex items-center my-6 pl-2 text-xl md:text-2xl">
           <FaShoppingCart />
           <h4 className="font-bold ms-3 ">Reat</h4>
-
-          
         </div>
         {/* Navigation Menu & Icons */}
         <nav className="Rent-navbar">
@@ -218,7 +216,8 @@ const Rent = () => {
                   <li onClick={() => {}}>
                     <a
                       href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
                       Summary
                       <LuPencil className="text-sm" />
                     </a>
@@ -250,29 +249,34 @@ const Rent = () => {
             </label>
             <ul className="Rent-at-list">
               {RentData.atrituteTitleRent.map((title, index) => (
-                <li key={""} className="w-auto lg:w-auto xl:w-28" >
-                {""}
-              </li>
+                <li key={""} className="w-auto lg:w-auto xl:w-28">
+                  {""}
+                </li>
               ))}
             </ul>
           </div>
         </div>
       </div>
-      
-      
-     {/* Table Section */}
+
+      {/* Table Section */}
       <div className="scrollbar Rent-tab-main">
         {getData.map((item, index) => {
-          let totalAmount = 0; 
-          
-        let totalDeposit = 0;
-        let totalLateFee = 0;
-        item.Products.forEach(product => {
-            let deposit = typeof product["Deposit"] === "string" ? parseFloat(product["Deposit"].replace("$", "")) : 0;
-            let lateFee = typeof product["Late Fee"] === "string" ? parseFloat(product["Late Fee"].replace("$", "")) : 0;
+          let totalAmount = 0;
+
+          let totalDeposit = 0;
+          let totalLateFee = 0;
+          item.Products.forEach((product) => {
+            let deposit =
+              typeof product["Deposit"] === "string"
+                ? parseFloat(product["Deposit"].replace("$", ""))
+                : 0;
+            let lateFee =
+              typeof product["Late Fee"] === "string"
+                ? parseFloat(product["Late Fee"].replace("$", ""))
+                : 0;
             totalDeposit += deposit;
             totalLateFee += lateFee;
-        });
+          });
 
           return (
             <div key={index} className="Rent-tab-content">
@@ -287,16 +291,27 @@ const Rent = () => {
               </label>
 
               <ul className="Rent-tab-list" style={{ fontSize: "14px" }}>
-                <li key={index} className="w-1/1 mr-9 font-semibold" style={{ marginRight: "4rem" }}>
-                
+                <li
+                  key={index}
+                  className="w-1/1 mr-9 font-semibold"
+                  style={{ marginRight: "4rem" }}
+                >
                   <span className="font-semibold">Rent ID:</span>{" "}
                   {item["Rent ID"]}
                 </li>
-                <li key={index} className="w-1/1 mr-9" style={{ marginRight: "4rem" }}>
+                <li
+                  key={index}
+                  className="w-1/1 mr-9"
+                  style={{ marginRight: "4rem" }}
+                >
                   <span className="font-semibold">Customer Name:</span>{" "}
                   {item["Customer Name"]}
                 </li>
-                <li key={index} className="w-1/1 mr-9" style={{ marginRight: "4rem" }}>
+                <li
+                  key={index}
+                  className="w-1/1 mr-9"
+                  style={{ marginRight: "4rem" }}
+                >
                   <span className="font-semibold">Rental Date:</span>{" "}
                   {item["Rental Date"]}
                 </li>
@@ -351,14 +366,9 @@ const Rent = () => {
 
                 <li className="w-full" style={{ gridColumn: "1 / -1" }}>
                   {item.Products.map((product, productIndex) => {
-                    totalAmount += parseFloat(
-                      product.Amount.replace("$", "")
-                    );
+                    totalAmount += parseFloat(product.Amount.replace("$", ""));
                     return (
-                      <div
-                        key={productIndex}
-                        className="flex flex-col mb-2"
-                      >
+                      <div key={productIndex} className="flex flex-col mb-2">
                         <div className="flex flex-wrap">
                           <div className="w-1/9 mr-6">
                             <span className="font-semibold">Product Name:</span>{" "}
@@ -389,9 +399,7 @@ const Rent = () => {
                             {product["Duration"]}
                           </div>
                           <div className="w-1/9 mr-6">
-                            <span className="font-semibold">
-                              Discount (%):
-                            </span>{" "}
+                            <span className="font-semibold">Discount (%):</span>{" "}
                             {product["Discount (%)"]}
                           </div>
                           <div className="w-1/9">
@@ -404,14 +412,24 @@ const Rent = () => {
                   })}
                 </li>
 
-                <li className="w-auto lg:w-auto xl:w-48" style={{ marginRight: "3rem" }}>
-                    <span className="font-bold">Deposit:</span>
-                    <span className="ms-2 font-bold">${totalDeposit.toFixed(1)}</span>
+                <li
+                  className="w-auto lg:w-auto xl:w-48"
+                  style={{ marginRight: "3rem" }}
+                >
+                  <span className="font-bold">Deposit:</span>
+                  <span className="ms-2 font-bold">
+                    ${totalDeposit.toFixed(1)}
+                  </span>
                 </li>
 
-                <li className="w-auto lg:w-auto xl:w-48" style={{ marginRight: "3rem" }}>
-                    <span className="font-bold">Late Fee:</span>
-                    <span className="ms-2 font-bold">${totalLateFee.toFixed(1)}</span>
+                <li
+                  className="w-auto lg:w-auto xl:w-48"
+                  style={{ marginRight: "3rem" }}
+                >
+                  <span className="font-bold">Late Fee:</span>
+                  <span className="ms-2 font-bold">
+                    ${totalLateFee.toFixed(1)}
+                  </span>
                 </li>
                 <li
                   className="w-auto lg:w-auto xl:w-48"
@@ -422,16 +440,12 @@ const Rent = () => {
                 </li>
                 <li
                   className="w-auto lg:w-auto xl:w-48"
-                  style={{ marginRight: "7rem", color: "green"  }}
+                  style={{ marginRight: "7rem", color: "green" }}
                 >
-                  <span className="font-bold">Status:</span>{" "}
-                  {item["Status"]}
+                  <span className="font-bold">Status:</span> {item["Status"]}
                 </li>
 
-                <div
-                  className="flex justify-end"
-                  style={{ fontSize: "17px" }}
-                >
+                <div className="flex justify-end" style={{ fontSize: "17px" }}>
                   <span className="font-bold">Total Paid:</span>
                   <span className="ms-2 font-bold">
                     ${totalAmount.toFixed(1)}

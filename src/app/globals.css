@@ -265,6 +265,18 @@
 
 }
 
+/* ==================Feedback================================= */
+.Feed-menubar {
+  @apply bg-gray-300 bg-opacity-70 w-[200px] lg:w-[449px]  rounded;
+}
+
+
+
+
+
+
+
+
 .scrollbar::-webkit-scrollbar {
   width: 0px;
 }

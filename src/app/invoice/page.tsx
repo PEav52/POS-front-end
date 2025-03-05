@@ -4,19 +4,20 @@ import { FaFileInvoice } from "react-icons/fa";
 import { TfiMoreAlt } from "react-icons/tfi";
 import { MdDelete, MdReviews } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
-import { InvoiceData } from "../Data/data";
+import { InvoiceData } from "../constants/data";
 import { FaSort } from "react-icons/fa";
 import { HiRefresh } from "react-icons/hi";
 import { FaPercentage } from "react-icons/fa";
 import { MdMore } from "react-icons/md";
-import { menuIcon } from "../Data/data";
+import { menuIcon } from "../constants/data";
 const Payment = () => {
   const [activeNav, setActiveMenu] = useState<string>("All");
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [toggle, setToggle] = useState<number | null>(null);
+  const [desc, setDecc] = useState<number | null>(null);
   const [sort, setsort] = useState<string>("");
+  const [dropNave, setDropnav] = useState<string>("");
 
   const [checkedItems, setCheckedItems] = useState<boolean[]>(
     new Array(InvoiceData.EntityValueReturnInvoice.length).fill(false)
@@ -57,7 +58,7 @@ const Payment = () => {
   // =====Pagination and Toggle========>
   const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
     event.stopPropagation();
-    setToggle((prev) => (prev === id ? null : id));
+    setDecc((prev) => (prev === id ? null : id));
   };
   // ========= filter Search status and revers======>
   let getData = filteredData.filter((item) =>
@@ -67,7 +68,8 @@ const Payment = () => {
         value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-  if (toggle === 3) {
+  // ====>
+  if (desc === 3) {
     let sortedData = [...filteredData];
     sortedData.sort((a, b) =>
       JSON.stringify(b).localeCompare(JSON.stringify(a))
@@ -77,26 +79,31 @@ const Payment = () => {
   //== Sort Data ==>
   const handleSort = () => {
     if (sort === "asc") {
-      InvoiceData.EntityValueReturnInvoice.sort((a, b) =>
+      filteredData.sort((a, b) =>
         (typeof b.status === "string" ? b.status : "").localeCompare(
           typeof a.status === "string" ? a.status : ""
         )
       );
       setsort("desc");
     } else {
-      InvoiceData.EntityValueReturnInvoice.sort((a, b) =>
+      filteredData.sort((a, b) =>
         (typeof a.status === "string" ? a.status : "").localeCompare(
           typeof b.status === "string" ? b.status : ""
         )
       );
-      setsort("asc");
+    setsort("asc");
     }
+    setDecc(null);
   };
   // ========= Dropdown Handling =======>
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (!(event.target as Element).closest(".dropdown-menu")) {
         setDropdownIndex(null);
+        setDropnav("");
+      }
+      if ((event.target as Element).matches(".scope-input")) {
+        setDropnav("search");
       }
     };
     document.addEventListener("click", handleClickOutside, true);
@@ -137,96 +144,115 @@ const Payment = () => {
 
           <div className="In-menuicon">
             {/* Search Input */}
-            <div className={`${toggle === 1 ? "block" : "hidden"}`}>
-              <input
-                type="text"
-                placeholder="Search item"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="In-searChmenu"
-              />
-            </div>
-            <div className="iconMenu" onClick={(e) => handleClick(e, 1)}>
+            {dropNave === "search" && (
+              <div className="block">
+                <input
+                  type="text"
+                  placeholder="Search item"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="In-searChmenu scope-input"
+                />
+              </div>
+            )}
+
+            <div
+              className="iconMenu dropdown-menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDropnav(dropNave === "search" ? "" : "search");
+              }}
+            >
               <menuIcon.IoIosSearch className="text-lg cursor-pointer" />
             </div>
-            <div className="iconMenu" onClick={(e) => handleClick(e, 2)}>
+
+            <div
+              className="iconMenu dropdown-menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDropnav(dropNave === "filter" ? "" : "filter");
+              }}
+            >
               <menuIcon.IoFilterSharp className="text-lg cursor-pointer" />
-              <div
-                className={`${
-                  toggle === 2
-                    ? "flex absolute  right-[105px] -bottom-8"
-                    : "hidden"
-                }`}
-              >
-                <ul className="In-drop-sort">
-                  <li onClick={handleSort}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      A-Z <FaSort className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={handleRefresh}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Refresh
-                      <HiRefresh className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      More
-                      <MdMore className="text-sm" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              {dropNave === "filter" && (
+                <div className="flex absolute  right-[105px] -bottom-8 dropdown-menu">
+                  <ul className="In-drop-sort">
+                    <li onClick={handleSort}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        A-Z <FaSort className="text-sm" />
+                      </a>
+                    </li>
+
+                    <li onClick={handleRefresh}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Refresh
+                        <HiRefresh className="text-sm" />
+                      </a>
+                    </li>
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        More
+                        <MdMore className="text-sm" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
+
             <div className="iconMenu" onClick={(e) => handleClick(e, 3)}>
               <menuIcon.LuArrowDownUp className="text-lg cursor-pointer" />
             </div>
-            <div className="iconMenu" onClick={(e) => handleClick(e, 4)}>
+
+            <div
+              className="iconMenu dropdown-menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDropnav(dropNave === "more" ? "" : "more");
+              }}
+            >
               <menuIcon.TfiMoreAlt className="text-lg cursor-pointer" />
-              <div
-                className={`${
-                  toggle === 4 ? "flex absolute right-0 -bottom-8" : "hidden"
-                }`}
-              >
-                <ul className="In-drop-more">
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Estimation <FaPercentage className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Summary
-                      <LuPencil className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Delete All
-                      <MdDelete className="text-sm" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              {dropNave === "more" && (
+                <div className="flex absolute right-0 -bottom-8 dropdown-menu">
+                  <ul className="In-drop-more">
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Estimation <FaPercentage className="text-sm" />
+                      </a>
+                    </li>
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Summary
+                        <LuPencil className="text-sm" />
+                      </a>
+                    </li>
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Delete All
+                        <MdDelete className="text-sm" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </nav>
@@ -303,6 +329,7 @@ const Payment = () => {
                 }}
               >
                 <TfiMoreAlt className="text-lg" />
+
                 {dropdownIndex === index && (
                   <ul className="tab-drop-list dropdown-menu">
                     <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">

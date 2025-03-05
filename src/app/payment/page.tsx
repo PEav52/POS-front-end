@@ -7,102 +7,111 @@ import { FaCreditCard, FaSort } from "react-icons/fa";
 import { HiRefresh } from "react-icons/hi";
 import { FaPercentage } from "react-icons/fa";
 import { MdMore } from "react-icons/md";
-import { menuIcon } from "../Data/data";
-import { PaymentData } from "../Data/data";
+import { menuIcon } from "../constants/data";
+import { PaymentData } from "../constants/data";
 const Payment = () => {
-  const [activeNav, setActiveMenu] = useState<string>("All");
-  const [isAllChecked, setIsAllChecked] = useState(false);
-  const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [toggle, setToggle] = useState<number | null>(null);
-  const [sort, setsort] = useState<string>("");
-  const [checkedItems, setCheckedItems] = useState<boolean[]>(
-    new Array(PaymentData.EntityValuePayment.length).fill(false)
-  );
-  //============Refresh page=========>
-  const handleRefresh = () => {
-    window.location.reload();
-  };
-  // ========= Filter Manu============>
-  const filteredData =
-    activeNav === "All"
-      ? PaymentData.EntityValuePayment
-      : PaymentData.EntityValuePayment.filter(
-          (item) => item.Status === activeNav
-        );
-  const handleFillter = (item: string) => {
-    setActiveMenu(item);
-    setIsAllChecked(false);
-    setCheckedItems(new Array(filteredData.length).fill(false)); // Reset checked state
-  };
-  // ==== Select checkbox All =======>
-  const handleSelectAllChange = () => {
-    if (filteredData.length) {
-      const updatedCheckedItems = new Array(filteredData.length).fill(
-        !isAllChecked
-      );
-      setCheckedItems(updatedCheckedItems);
-      setIsAllChecked(!isAllChecked);
-    }
-  };
-
-  const handleCheckboxChange = (index: number) => {
-    setCheckedItems((prev) => {
-      const updatedCheckedItems = [...prev];
-      updatedCheckedItems[index] = !updatedCheckedItems[index];
-      return updatedCheckedItems;
-    });
-  };
-  // ======Pagination and Toggle=========>
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
-    event.stopPropagation();
-    setToggle((prev) => (prev === id ? null : id));
-  };
-  // ========= filter Search status and revers======>
-  let getData = filteredData.filter((item) =>
-    Object.values(item).some(
-      (value) =>
-        typeof value === "string" &&
-        value.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
-  if (toggle === 3) {
-    let sortedData = [...filteredData];
-    sortedData.sort((a, b) =>
-      JSON.stringify(b).localeCompare(JSON.stringify(a))
+    const [activeNav, setActiveMenu] = useState<string>("All");
+    const [isAllChecked, setIsAllChecked] = useState(false);
+    const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    const [desc, setDecc] = useState<number | null>(null);
+    const [sort, setsort] = useState<string>("");
+    const [dropNave, setDropnav] = useState<string>("");
+  
+    const [checkedItems, setCheckedItems] = useState<boolean[]>(
+      new Array(PaymentData.EntityValuePayment.length).fill(false)
     );
-    getData = sortedData;
-  }
-  //== Sort Data ==>
-  const handleSort = () => {
-    if (sort === "asc") {
-      PaymentData.EntityValuePayment.sort((a, b) =>
-        (typeof b.Status === "string" ? b.Status : "").localeCompare(
-          typeof a.Status === "string" ? a.Status : ""
-        )
-      );
-      setsort("desc");
-    } else {
-      PaymentData.EntityValuePayment.sort((a, b) =>
-        (typeof a.Status === "string" ? a.Status : "").localeCompare(
-          typeof b.Status === "string" ? b.Status : ""
-        )
-      );
-      setsort("asc");
-    }
-  };
-  // ========= Dropdown Handling =======>
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (!(event.target as Element).closest(".dropdown-menu")) {
-        setDropdownIndex(null);
+    //============Refresh page=========>
+    const handleRefresh = () => {
+      window.location.reload();
+    };
+    // ===Filter Manu=================>
+    const filteredData =
+      activeNav === "All"
+        ? PaymentData.EntityValuePayment
+        : PaymentData.EntityValuePayment.filter(
+            (item) => item.Status === activeNav
+          );
+    const handleFillter = (item: string) => {
+      setActiveMenu(item);
+      setIsAllChecked(false);
+      setCheckedItems(new Array(filteredData.length).fill(false));
+    };
+    // ==== Select checkbox All =======>
+    const handleSelectAllChange = () => {
+      if (filteredData.length) {
+        const updatedCheckedItems = new Array(filteredData.length).fill(
+          !isAllChecked
+        );
+        setCheckedItems(updatedCheckedItems);
+        setIsAllChecked(!isAllChecked);
       }
     };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, true);
+    const handleCheckboxChange = (index: number) => {
+      setCheckedItems((prev) => {
+        const updatedCheckedItems = [...prev];
+        updatedCheckedItems[index] = !updatedCheckedItems[index];
+        return updatedCheckedItems;
+      });
     };
-  }, []);
+    // =====Pagination and Toggle========>
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>, id: number) => {
+      event.stopPropagation();
+      setDecc((prev) => (prev === id ? null : id));
+    };
+    // ========= filter Search status and revers======>
+    let getData = filteredData.filter((item) =>
+      Object.values(item).some(
+        (value) =>
+          typeof value === "string" &&
+          value.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+    // ====>
+    if (desc === 3) {
+      let sortedData = [...filteredData];
+      sortedData.sort((a, b) =>
+        JSON.stringify(b).localeCompare(JSON.stringify(a))
+      );
+      getData = sortedData;
+    }
+    //== Sort Data ==>
+    const handleSort = () => {
+      if (sort === "asc") {
+        filteredData.sort((a, b) =>
+          (typeof b.Status === "string" ? b.Status: "").localeCompare(
+            typeof a.Status === "string" ? a.Status : ""
+          )
+        );
+        setsort("desc");
+      } else {
+        filteredData.sort((a, b) =>
+          (typeof a.Status === "string" ? a.Status : "").localeCompare(
+            typeof b.Status === "string" ? b.Status : ""
+          )
+        );
+      setsort("asc");
+      }
+      setDecc(null);
+    };
+    // ========= Dropdown Handling =======>
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (!(event.target as Element).closest(".dropdown-menu")) {
+          setDropdownIndex(null);
+          setDropnav("");
+        }
+        if ((event.target as Element).matches(".scope-input")) {
+          setDropnav("search");
+        }
+      };
+      document.addEventListener("click", handleClickOutside, true);
+      return () => {
+        document.removeEventListener("click", handleClickOutside, true);
+      };
+    }, []);
+    // ====================================>
+
   return (
     <section className="mx-5">
       <div className="font-inter flex flex-col">
@@ -135,97 +144,118 @@ const Payment = () => {
           </div>
           <div className="Pay-menuicon">
             {/* Search Input */}
-            <div className={`${toggle === 1 ? "block" : "hidden"}`}>
-              <input
-                type="text"
-                placeholder="Search item"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="Pay-searChmenu"
-              />
-            </div>
-            <div className="iconMenu" onClick={(e) => handleClick(e, 1)}>
-              <menuIcon.IoIosSearch className="text-lg cursor-pointer" />
-            </div>
-            <div className="iconMenu" onClick={(e) => handleClick(e, 2)}>
-              <menuIcon.IoFilterSharp className="text-lg cursor-pointer" />
+          {dropNave === "search" && (
+                <div className="block">
+                  <input
+                    type="text"
+                    placeholder="Search item"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="In-searChmenu scope-input"
+                  />
+                </div>
+              )}
               <div
-                className={`${
-                  toggle === 2
-                    ? "flex absolute  right-[105px] -bottom-8"
-                    : "hidden"
-                }`}
+                className="iconMenu dropdown-menu"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setDropnav(dropNave === "search" ? "" : "search");
+                }}
               >
-                <ul className="In-drop-sort">
-                  <li onClick={handleSort}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      A-Z <FaSort className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={handleRefresh}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Refresh
-                      <HiRefresh className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      More
-                      <MdMore className="text-sm" />
-                    </a>
-                  </li>
-                </ul>
+                <menuIcon.IoIosSearch className="text-lg cursor-pointer" />
               </div>
+            <div
+              className="iconMenu dropdown-menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDropnav(dropNave === "filter" ? "" : "filter");
+              }}
+            >
+              <menuIcon.IoFilterSharp className="text-lg cursor-pointer" />
+              {dropNave === "filter" && (
+                <div className="flex absolute  right-[105px] -bottom-8 dropdown-menu">
+                  <ul className="In-drop-sort">
+                    <li onClick={handleSort}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        A-Z <FaSort className="text-sm" />
+                      </a>
+                    </li>
+
+                    <li onClick={handleRefresh}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Refresh
+                        <HiRefresh className="text-sm" />
+                      </a>
+                    </li>
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        More
+                        <MdMore className="text-sm" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
+
             <div className="iconMenu" onClick={(e) => handleClick(e, 3)}>
               <menuIcon.LuArrowDownUp className="text-lg cursor-pointer" />
             </div>
-            <div className="iconMenu" onClick={(e) => handleClick(e, 4)}>
+
+            <div
+              className="iconMenu dropdown-menu"
+              onClick={(e) => {
+                e.stopPropagation();
+                setDropnav(dropNave === "more" ? "" : "more");
+              }}
+            >
               <menuIcon.TfiMoreAlt className="text-lg cursor-pointer" />
-              <div
-                className={`${
-                  toggle === 4 ? "flex absolute right-0 -bottom-8" : "hidden"
-                }`}
-              >
-                <ul className="In-drop-more">
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Estimation <FaPercentage className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Summary
-                      <LuPencil className="text-sm" />
-                    </a>
-                  </li>
-                  <li onClick={() => {}}>
-                    <a
-                      href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                    >
-                      Delete All
-                      <MdDelete className="text-sm" />
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              {dropNave === "more" && (
+                <div className="flex absolute right-0 -bottom-8 dropdown-menu">
+                  <ul className="In-drop-more">
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Estimation <FaPercentage className="text-sm" />
+                      </a>
+                    </li>
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Summary
+                        <LuPencil className="text-sm" />
+                      </a>
+                    </li>
+                    <li onClick={() => {}}>
+                      <a
+                        href="#"
+                        className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                      >
+                        Delete All
+                        <MdDelete className="text-sm" />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
+
+
+
+
           </div>
         </nav>
         {/* Attribute Section */}
@@ -252,7 +282,7 @@ const Payment = () => {
 
       {/* Table Section */}
       <div className="Pay-tab-main">
-        {getData.map((item, index) => (
+      {getData.map((item, index) => (
           <div key={index} className="Pay-tab-content">
             <label className=" flex items-center space-x-2">
               <input

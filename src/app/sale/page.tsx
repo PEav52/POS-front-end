@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import { TfiMoreAlt } from "react-icons/tfi";
 import { MdDelete, MdReviews } from "react-icons/md";
 import { LuPencil } from "react-icons/lu";
-import { SaleData } from "../Data/data";
+import { SaleData } from "../constants/data";
 import { FaSort } from "react-icons/fa";
 import { HiRefresh } from "react-icons/hi";
 import { FaPercentage } from "react-icons/fa";
 import { MdMore } from "react-icons/md";
-import { menuIcon } from "../Data/data";
+import { menuIcon } from "../constants/data";
 
 //============icon=========>
 import { FaTags } from "react-icons/fa";
@@ -115,7 +115,6 @@ const Sale = () => {
       <div className="font-inter flex flex-col ">
         {/* Header */}
         <div className="flex items-center my-6 pl-2 text-xl md:text-2xl">
-      
           <FaTags />
           <h4 className="font-bold ms-3 ">Sale</h4>
 
@@ -221,7 +220,8 @@ const Sale = () => {
                   <li onClick={() => {}}>
                     <a
                       href="#"
-                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                      className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                    >
                       Summary
                       <LuPencil className="text-sm" />
                     </a>
@@ -253,157 +253,165 @@ const Sale = () => {
             </label>
             <ul className="Sale-at-list">
               {SaleData.atrituteTitleSale.map((title, index) => (
-                <li key={""} className="w-auto lg:w-auto xl:w-28" >
-                {""}
-              </li>
+                <li key={""} className="w-auto lg:w-auto xl:w-28">
+                  {""}
+                </li>
               ))}
             </ul>
           </div>
         </div>
       </div>
-      
-      
-            {/* Table Section */}
-            <div className="scrollbar Sale-tab-main">
-              {getData.map((item, index) => {
-                let totalAmount = 0; // គណនា Total Amount
-                return (
-                  <div key={index} className="Sale-tab-content">
-                    <label className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        name="item"
-                        className="Sale-tab-check"
-                        checked={checkedItems[index] || false}
-                        onChange={() => handleCheckboxChange(index)}
-                      />
-                    </label>
 
-                    <ul className="Sale-tab-list" style={{ fontSize: "14px" }}>
-                    
-                      <li key={index} className="w-1/5 mr-4 font-semibold">
-                      <span className="font-semibold">Sale ID:</span> {item["Sale ID"]}
-                    </li>
-                    <li key={index} className="w-1/5 mr-4">
-                      <span className="font-semibold">Customer ID:</span> {item["Customer ID"]}
-                    </li>
-                    <li key={index} className="w-1/5 mr-4">
-                      <span className="font-semibold">Customer Name:</span> {item["Customer Name"]}
-                    </li>
-                    <li key={index} className="w-1/5 mr-4" style={{marginRight: "10rem" }} >
-                      <span className="font-semibold">Date & Time:</span> {item["Date & Time"]}
-                    </li>
+      {/* Table Section */}
+      <div className="scrollbar Sale-tab-main">
+        {getData.map((item, index) => {
+          let totalAmount = 0; // គណនា Total Amount
+          return (
+            <div key={index} className="Sale-tab-content">
+              <label className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  name="item"
+                  className="Sale-tab-check"
+                  checked={checkedItems[index] || false}
+                  onChange={() => handleCheckboxChange(index)}
+                />
+              </label>
 
-                      <li
-                        className="relative cursor-pointer dropdown-menu"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setDropdownIndex(dropdownIndex === index ? null : index);
-                        }}
-                      >
-                        <TfiMoreAlt className="text-lg" />
-                        {dropdownIndex === index && (
-                          <ul className="Sale-drop-list dropdown-menu">
-                            <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
-                              View <MdReviews className="text-sm" />
-                            </li>
-                            <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
-                              Edit
-                              <LuPencil className="text-sm" />
-                            </li>
-                            <li onClick={() => {}}>
-                              <a
-                                href={String(index)}
-                                className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
-                              >
-                                Delete
-                                <MdDelete className="text-sm" />
-                              </a>
-                            </li>
-                          </ul>
-                        )}
-                      </li><br/><br/>
+              <ul className="Sale-tab-list" style={{ fontSize: "14px" }}>
+                <li key={index} className="w-1/5 mr-4 font-semibold">
+                  <span className="font-semibold">Sale ID:</span>{" "}
+                  {item["Sale ID"]}
+                </li>
+                <li key={index} className="w-1/5 mr-4">
+                  <span className="font-semibold">Customer ID:</span>{" "}
+                  {item["Customer ID"]}
+                </li>
+                <li key={index} className="w-1/5 mr-4">
+                  <span className="font-semibold">Customer Name:</span>{" "}
+                  {item["Customer Name"]}
+                </li>
+                <li
+                  key={index}
+                  className="w-1/5 mr-4"
+                  style={{ marginRight: "10rem" }}
+                >
+                  <span className="font-semibold">Date & Time:</span>{" "}
+                  {item["Date & Time"]}
+                </li>
 
-
-                      <li className="w-full" style={{ gridColumn: "1 / -1" }}>
-                        {item.Products.map((product, productIndex) => {
-                          totalAmount += parseFloat(product.Amount.replace("$", ""));
-                          return (
-                            <div
-                              key={productIndex}
-                              className="flex flex-col mb-2"
-                            >
-                              <div className="flex flex-wrap">
-                            
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Product Name:</span>{" "}
-                                  {product["Product Name"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Category:</span>{" "}
-                                  {product["Category"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Size:</span>{" "}
-                                  {product["Size"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Color:</span>{" "}
-                                  {product["Color"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Quantity:</span>{" "}
-                                  {product["Quantity"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Unit Price:</span>{" "}
-                                  {product["Unit Price"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Total Price:</span>{" "}
-                                  {product["Total Price"]}
-                                </div>
-                                <div className="w-1/9 mr-6"> 
-                                  <span className="font-semibold">Discount (%):</span>{" "}
-                                  {product["Discount (%)"]}
-                                </div>
-                                <div className="w-1/9">
-                                  <span className="font-semibold">Amount:</span>{" "}
-                                  {product["Amount"]}
-                                </div>
-                              </div>
-                                              
-                            
-                            </div>
-                          );
-                        })}
+                <li
+                  className="relative cursor-pointer dropdown-menu"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setDropdownIndex(dropdownIndex === index ? null : index);
+                  }}
+                >
+                  <TfiMoreAlt className="text-lg" />
+                  {dropdownIndex === index && (
+                    <ul className="Sale-drop-list dropdown-menu">
+                      <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                        View <MdReviews className="text-sm" />
                       </li>
-
-                      <li className="w-auto lg:w-auto xl:w-48" style={{marginRight: "5rem" }}>
-                        <span className="font-bold">Payment Method:</span>{" "}
-                        {item["Payment Method"]}
+                      <li className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between">
+                        Edit
+                        <LuPencil className="text-sm" />
                       </li>
-                      <li className="w-auto lg:w-auto xl:w-48" style={{marginRight: "5rem" }}>
-                        <span className="font-bold">Cashier Name:</span>{" "}
-                        {item["Cashier Name"]}
+                      <li onClick={() => {}}>
+                        <a
+                          href={String(index)}
+                          className="hover:bg-gray-100 p-2 cursor-pointer flex justify-between"
+                        >
+                          Delete
+                          <MdDelete className="text-sm" />
+                        </a>
                       </li>
-                      <li className="w-auto lg:w-auto xl:w-48" style={{marginRight: "18em" }}>
-                        <span className="font-bold">Status:</span> {item["Status"]}
-                      </li>
+                    </ul>
+                  )}
+                </li>
+                <br />
+                <br />
 
-                      <div className="flex justify-end" style={{ fontSize: "17px"}}>
+                <li className="w-full" style={{ gridColumn: "1 / -1" }}>
+                  {item.Products.map((product, productIndex) => {
+                    totalAmount += parseFloat(product.Amount.replace("$", ""));
+                    return (
+                      <div key={productIndex} className="flex flex-col mb-2">
+                        <div className="flex flex-wrap">
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Product Name:</span>{" "}
+                            {product["Product Name"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Category:</span>{" "}
+                            {product["Category"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Size:</span>{" "}
+                            {product["Size"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Color:</span>{" "}
+                            {product["Color"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Quantity:</span>{" "}
+                            {product["Quantity"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Unit Price:</span>{" "}
+                            {product["Unit Price"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Total Price:</span>{" "}
+                            {product["Total Price"]}
+                          </div>
+                          <div className="w-1/9 mr-6">
+                            <span className="font-semibold">Discount (%):</span>{" "}
+                            {product["Discount (%)"]}
+                          </div>
+                          <div className="w-1/9">
+                            <span className="font-semibold">Amount:</span>{" "}
+                            {product["Amount"]}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </li>
 
-              <span className="font-bold">Total Amount:</span>
-              <span className="ms-2 font-bold">${totalAmount.toFixed(1)}</span>
+                <li
+                  className="w-auto lg:w-auto xl:w-48"
+                  style={{ marginRight: "5rem" }}
+                >
+                  <span className="font-bold">Payment Method:</span>{" "}
+                  {item["Payment Method"]}
+                </li>
+                <li
+                  className="w-auto lg:w-auto xl:w-48"
+                  style={{ marginRight: "5rem" }}
+                >
+                  <span className="font-bold">Cashier Name:</span>{" "}
+                  {item["Cashier Name"]}
+                </li>
+                <li
+                  className="w-auto lg:w-auto xl:w-48"
+                  style={{ marginRight: "18em" }}
+                >
+                  <span className="font-bold">Status:</span> {item["Status"]}
+                </li>
+
+                <div className="flex justify-end" style={{ fontSize: "17px" }}>
+                  <span className="font-bold">Total Amount:</span>
+                  <span className="ms-2 font-bold">
+                    ${totalAmount.toFixed(1)}
+                  </span>
+                </div>
+              </ul>
             </div>
-              
-        </ul>
-
+          );
+        })}
       </div>
-    );
-  })}
-</div>
-
     </section>
   );
 };
