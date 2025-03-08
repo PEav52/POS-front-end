@@ -10,6 +10,7 @@ import { FaPercentage } from "react-icons/fa";
 import { MdMore } from "react-icons/md";
 import { menuIcon } from "../constants/data";
 import { FaComments } from "react-icons/fa6";
+import Rating from "../components/Rating/Rating";
 const Return = () => {
   const [activeNav, setActiveMenu] = useState<string>("All");
   const [isAllChecked, setIsAllChecked] = useState(false);
@@ -299,7 +300,7 @@ const Return = () => {
                 {item.Type}
               </li>
               <li className="w-28 ml-[45px]  break-words whitespace-normal">
-                {item.Rating}
+              <Rating rating={item.Rating || 0}/>
               </li>
               <li className="w-36 h-9 overflow-hidden ml-[30px]   break-words whitespace-normal">
                 {item.Comment}
