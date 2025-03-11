@@ -15,16 +15,20 @@ const sampleProducts: Product[] = [
   { id: "2", name: "Black Hoodie", price: "$35.99", stock: 30, image: "/hoodie.png" },
 ];
 
-export default function EditProduct({ params }: { params: { id: string } }) {
+export default function EditProduct({ 
+  params,
+ }: { 
+  params: { productId: string };
+ }) {
   const router = useRouter();
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    const foundProduct = sampleProducts.find((p) => p.id === params.id);
+    const foundProduct = sampleProducts.find((p) => p.id === params.productId);
     if (foundProduct) {
       setProduct(foundProduct);
     }
-  }, [params.id]);
+  }, [params.productId]);
 
   if (!product) return <p className="text-center mt-10 text-red-500">Product not found</p>;
 

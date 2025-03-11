@@ -34,7 +34,7 @@ export default function Products() {
 
   // Function HandleEidtProduct To Direc to file Page Edit Product
   const handleEditProduct = (id: string) => {
-    router.push(`/products/${id}/edit`); // ✅ Navigate to correct path
+    router.push(`/products/${id}`); // ✅ Navigate to correct path
   };
 
   // To Display at all Table list
